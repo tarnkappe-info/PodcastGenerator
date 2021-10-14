@@ -140,7 +140,6 @@ function searchEpisodes($name = "", $_config)
     return $episodes_data;
 }
 
-require_once '../vendor/james-heinrich/getid3/getid3/getid3.php';
 
 /**
  * Get episode audio metadata from getID3.
@@ -150,6 +149,8 @@ require_once '../vendor/james-heinrich/getid3/getid3/getid3.php';
  */
 function getID3Info($filename)
 {
+    require_once '../vendor/james-heinrich/getid3/getid3/getid3.php';
+
     $getID3 = new getID3();
     return $getID3->analyze($filename);
 }
@@ -158,6 +159,8 @@ function getID3Info($filename)
 // to the specific default value.
 function getID3Tag($fileinfo, $tagName, $defaultValue = null)
 {
+    require_once '../vendor/james-heinrich/getid3/getid3/getid3.php';
+
     if (isset($fileinfo['tags']['id3v2'][$tagName][0]) &&
             $fileinfo['tags']['id3v2'][$tagName][0]) {
         return $fileinfo['tags']['id3v2'][$tagName][0];
